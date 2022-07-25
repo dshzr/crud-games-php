@@ -1,7 +1,8 @@
 <?php
     include_once '../classes/Games.php';
-    include_once '../classes/getGames.php';
+    include '../classes/getGames.php';
 
+    
     
 ?>
 <!DOCTYPE html>
@@ -135,8 +136,8 @@
                         $game[descricao]
                         </p>
                         <div class='flex w-full justify-start flex-wrap sm:justify-end gap-3 sm:my-0 my-4'>
-                            <button name='btn-detalhes' type='submit' class='btn-detalhes btn-action bg-blue-500 hover:bg-blue-400 '>VER DETALHES</button>
-                            <button name='btn-deletar' type='submit' class='btn-deletar btn-action bg-red-500 hover:bg-red-400 '>DELETAR</button>
+                            <button id='game-$game[id]' name='btn-editar' type='submit' class='btn-editar btn-action bg-blue-500 hover:bg-blue-400 '>EDITAR</button>
+                            <button id='game-$game[id]' name='btn-deletar' type='submit' class='btn-deletar btn-action bg-red-500 hover:bg-red-400 '>DELETAR</button>
                         </div>
                     </div>
                     ";
@@ -146,7 +147,7 @@
 <!-- POPUP EDITAR GAME -->
 
 
-                <div id="popup-editar" class="hidefixed z-100 w-screen h-screen bg-black/50 m-auto p-10 ">
+                <div data-gameid="1" id="popup-editar" class="hide fixed z-100 w-screen h-screen bg-black/50 m-auto p-10 ">
                     <form method="POST" class="form" name="form" action="/crud/classes/editarGame.php">
                         <div class="flex w-full justify-end ">
                             <span id="close-popup" class=" text-gray-800 text-3xl font-bold cursor-pointer p-4">X</span>
@@ -156,16 +157,16 @@
                             class="input"
                             type="text" 
                             name="nome" 
-                            id="nome" 
+                            id="nome-game" 
                             placeholder="Nome"
-                            value="a"
+                           
                         >
                         <label class="label" for="descricao">Descrição</label>
                         <input 
                             class="input"
                             type="text" 
                             name="descricao" 
-                            id="descricao" 
+                            id="descricao-game" 
                             placeholder="Descrição"
                         >
                         <label class="label" for="valor">Valor</label>
@@ -173,7 +174,7 @@
                             class="input"
                             type="number" 
                             name="valor" 
-                            id="valor" 
+                            id="valor-game" 
                             placeholder="Valor"
                         >
                         <button

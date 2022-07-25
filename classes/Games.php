@@ -2,6 +2,8 @@
 include_once 'Conexao.php';
 
 
+
+
 class Games{
     public $nome;
     public $descricao;
@@ -29,6 +31,7 @@ class Games{
     }
     
     static public function getGames(){
+        
         $con = Conexao::conectar();
         try{
             $sql = $con->prepare("SELECT * FROM games");
