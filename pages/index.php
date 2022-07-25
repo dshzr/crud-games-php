@@ -136,8 +136,8 @@
                         $game[descricao]
                         </p>
                         <div class='flex w-full justify-start flex-wrap sm:justify-end gap-3 sm:my-0 my-4'>
-                            <button id='game-$game[id]' name='btn-editar' type='submit' class='btn-editar btn-action bg-blue-500 hover:bg-blue-400 '>EDITAR</button>
-                            <button id='game-$game[id]' name='btn-deletar' type='submit' class='btn-deletar btn-action bg-red-500 hover:bg-red-400 '>DELETAR</button>
+                            <button data-game='$game[id]'  name='btn-editar' type='submit' class='btn-editar btn-action bg-blue-500 hover:bg-blue-400 '>EDITAR</button>
+                            <button data-game='$game[id]'  name='btn-deletar' type='submit' class='btn-deletar btn-action bg-red-500 hover:bg-red-400 '>DELETAR</button>
                         </div>
                     </div>
                     ";
@@ -152,11 +152,12 @@
                         <div class="flex w-full justify-end ">
                             <span id="close-popup" class=" text-gray-800 text-3xl font-bold cursor-pointer p-4">X</span>
                         </div>
+                        <input class="hidden" type="number" id='id-game' name='id-game'>
                         <label class="label" for="nome">Nome</label>
                         <input 
                             class="input"
                             type="text" 
-                            name="nome" 
+                            name="nome-game" 
                             id="nome-game" 
                             placeholder="Nome"
                            
@@ -165,7 +166,7 @@
                         <input 
                             class="input"
                             type="text" 
-                            name="descricao" 
+                            name="descricao-game" 
                             id="descricao-game" 
                             placeholder="Descrição"
                         >
@@ -173,11 +174,12 @@
                         <input 
                             class="input"
                             type="number" 
-                            name="valor" 
+                            name="valor-game" 
                             id="valor-game" 
                             placeholder="Valor"
                         >
                         <button
+                        
                         class="btn"
                         >EDITAR JOGO</button>
                     </form>

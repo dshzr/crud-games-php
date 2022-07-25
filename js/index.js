@@ -1,11 +1,12 @@
 const btnFechar = $("#close-popup");
 const popup = document.querySelector("#popup-editar");
 const botoesEditar = $(".btn-editar");
-
+const botoesDeletar = $(".btn-deletar");
 //pegar todos os botoes de editar e adicionar um evento de clique para abrir o popup
 Array.from(botoesEditar).forEach((game) => {
   game.addEventListener("click", ({ target }) => {
-    const gameID = target["id"].split("-").pop();
+    const gameID = target.dataset["game"];
+
     showDataInPopup(gameID);
     popup.classList.remove("hide");
   });
@@ -28,8 +29,25 @@ function showDataInPopup(id) {
         };
       });
       let gameSelecionado = dados[id - 1];
+      console.log(dados);
+      $("#id-game").val(gameSelecionado.id);
       $("#nome-game").val(gameSelecionado.nome);
       $("#descricao-game").val(gameSelecionado.descricao);
       $("#valor-game").val(gameSelecionado.valor);
     });
+}
+
+Array.from(botoesDeletar).forEach((botao) => {
+  botao.addEventListener("click", ({ target }) => {
+    let idGame = target.dataset["game"];
+    deletarGame(idGame);
+  });
+});
+
+function deletarGame(id) {
+  let resAlert = confirm("DESEJA DELETAR ESSE JOGO?");
+
+  if (resAlert) {
+    window.location.href = "../classes/deletarGame.php/?id=" + id;
+  }
 }

@@ -44,12 +44,30 @@ class Games{
         
     }
 
-    public function updateGame($id){
+    static public function updateGame($game){
+        $con = Conexao::conectar();
+        try{
+            $sql  = $con->prepare("UPDATE games SET nome = ?, descricao = ?, valor = ? WHERE id = ?");
 
+            echo $game['id'];
+            $sql->execute(array($game['nome'],$game['descricao'], $game['valor'], $game['id'] ));
+        
+           
+            header('Location: /crud/pages/index.php');
+        }catch(err){
+            echo err.getMessage();
+        }
     }
 
-    public function deleteGame($id){
-
+    static public function deleteGame($id){
+        $con = Conexao::conectar();
+        try{
+            $sql  = $con->prepare("DELETE FROM games WHERE id = $id");
+            $sql->execute();
+            header('Location: /crud/pages/index.php');
+        }catch(err){
+            echo err.getMessage();
+        }
     }
 
 
