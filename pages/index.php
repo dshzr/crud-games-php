@@ -146,35 +146,35 @@
 <!-- POPUP EDITAR GAME -->
 
 
-                <div id="popup-editar" class="hide fixed z-100 w-screen h-screen bg-black/50 m-auto p-10 ">
+                <div id="popup-editar" class="hidefixed z-100 w-screen h-screen bg-black/50 m-auto p-10 ">
                     <form method="POST" class="form" name="form" action="/crud/classes/editarGame.php">
                         <div class="flex w-full justify-end ">
                             <span id="close-popup" class=" text-gray-800 text-3xl font-bold cursor-pointer p-4">X</span>
                         </div>
                         <label class="label" for="nome">Nome</label>
                         <input 
-                        class="input"
-                        type="text" 
-                        name="nome" 
-                        id="nome" 
-                        placeholder="Nome"
-                        value="a"
+                            class="input"
+                            type="text" 
+                            name="nome" 
+                            id="nome" 
+                            placeholder="Nome"
+                            value="a"
                         >
                         <label class="label" for="descricao">Descrição</label>
                         <input 
-                        class="input"
-                        type="text" 
-                        name="descricao" 
-                        id="descricao" 
-                        placeholder="Descrição"
+                            class="input"
+                            type="text" 
+                            name="descricao" 
+                            id="descricao" 
+                            placeholder="Descrição"
                         >
                         <label class="label" for="valor">Valor</label>
                         <input 
-                        class="input"
-                        type="number" 
-                        name="valor" 
-                        id="valor" 
-                        placeholder="Valor"
+                            class="input"
+                            type="number" 
+                            name="valor" 
+                            id="valor" 
+                            placeholder="Valor"
                         >
                         <button
                         class="btn"
