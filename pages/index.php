@@ -81,6 +81,33 @@
         .hide{
             display: none;
         }
+        .game-card{
+            @apply 
+            hover:bg-white/90
+            duration-300
+            p-4
+            bg-white
+            w-full
+            shadow-lg
+            rounded
+            text-gray-800
+            mt-5
+            ;
+        }
+
+        .btn-action{
+            @apply
+            w-full
+            sm:w-min
+            px-5 py-2
+            text-center
+            font-bold
+            rounded
+            cursor-pointer
+            shadow-lg
+            text-white
+            ;
+        }
     </style>
 </head>
 <body class="bg-red-500 ">
@@ -98,16 +125,7 @@
                             <div 
                                 id='$game[id]'
                                 class='
-                                game-card
-                                hover:bg-white/90
-                                duration-300
-                                p-4
-                                bg-white
-                                w-full
-                                shadow-lg
-                                rounded
-                                text-gray-800
-                                mt-5
+                                game-card 
                             '>
                         <div class='flex justify-between h-8 mb-5 items-center'>
                             <h3 class='text-lg  font-semibold '>
@@ -119,8 +137,8 @@
                         $game[descricao]
                         </p>
                         <div class='flex w-full justify-start flex-wrap sm:justify-end gap-3 sm:my-0 my-4'>
-                            <button   name='btn-detalhes' type='submit' class=' w-full sm:w-min btn-detalhes px-5 py-2 bg-blue-500 text-center font-bold hover:bg-blue-400 cursor-pointer rounded shadow-lg text-white'>VER DETALHES</button>
-                            <button name='btn-deletar' type='submit' class='w-full sm:w-min btn-deletar px-5 py-2 bg-red-500 hover:bg-red-400 text-center font-bold rounded cursor-pointer shadow-lg text-white'>DELETAR</button>
+                            <button name='btn-detalhes' type='submit' class='btn-detalhes btn-action bg-blue-500 hover:bg-blue-400 '>VER DETALHES</button>
+                            <button name='btn-deletar' type='submit' class='btn-deletar btn-action bg-red-500 hover:bg-red-400 '>DELETAR</button>
                         </div>
                     </div>
                     ";
