@@ -83,7 +83,6 @@
         }
         .game-card{
             @apply 
-            hover:bg-white/90
             duration-300
             p-4
             bg-white
@@ -117,9 +116,8 @@
             <a class="link" href="./cadastrar.php">CADASTRAR</a>
         </div>
 
-        <form action="" method="POST" class="w-full h-full py-5">
+        
             <?php
-
                 foreach($allGames as $game){
                     echo "
                             <div 
@@ -142,11 +140,9 @@
                         </div>
                     </div>
                     ";
-
                 }
-
             ?>
-        </form>
+     
 <!-- POPUP EDITAR GAME -->
 
 
