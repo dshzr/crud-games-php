@@ -57,12 +57,32 @@
                 duration-100
             ;
         }
+
+        .link{
+            @apply 
+                px-5
+                py-2
+                rounded
+                font-bold
+                hover:bg-red-600
+                text-white
+                border-2
+                border-white
+                outline-red-200
+                mt-4
+                sm:my-0
+            ;
+        }
     </style>
 </head>
 <body class="bg-red-500">
-    <div class="container p-4 flex items-center justify-start flex-col h-screen mx-auto">
-        <h1 class="text-4xl text-white font-bold my-7">CADASTRO</h1>
-        <form method="POST" class="form" name="form" action="/crud/classes/criarGame.php">
+    <div class="container p-4 flex items-center justify-start flex-col h-screen mx-auto w-full  lg:w-2/4">
+       
+            <h1 class="text-4xl text-white font-bold my-7">CADASTRO</h1>
+     <div class="flex w-full justify-end pb-5">
+         <a class="link" href="/crud/pages/index.php">VER JOGOS</a>
+    </div>
+        <form name="cadastrar" id="cadstrar" method="POST" class="form" action="/crud/classes/Games.php">
             <label class="label" for="nome">Nome</label>
             <input 
             class="input"
@@ -87,6 +107,7 @@
             id="valor" 
             placeholder="Valor"
             >
+            <input type="hidden" name="submit" value="cadastrar"> 
             <button
             class="btn"
             >CADASTRAR JOGO</button>

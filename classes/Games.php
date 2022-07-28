@@ -2,8 +2,41 @@
 include_once 'Conexao.php';
 
 
+//CRIAR GAME
+if(isset($_POST['submit'])){
+    if($_POST['submit'] == 'cadastrar'){
+        $nome = $_POST['nome'];
+        $descricao = $_POST['descricao'];
+        $valor = doubleval($_POST['valor']);
+        $game = new Games($nome, $descricao, $valor);
+        $game->createGame($game);
+    }
+    else if(($_POST['submit'] == 'editar')){
+        $nome = $_POST['nome-game'];
+        $descricao = $_POST['descricao-game'];
+        $valor = doubleval($_POST['valor-game']);
+        $id = intVal($_POST['id-game']);
+        
+        $game = [
+            "id" => $id,
+            "nome" => $nome,
+            "descricao" => $descricao,
+            "valor" =>  $valor,
+            "id" => $id
+        ];
+        Games::updateGame($game);
+    }
+ 
+}
+
+//EDITAR GAME
+if(isset($_POST['editar'])){
+   
+}
 
 
+
+//CRUD DATABASE
 class Games{
     public $nome;
     public $descricao;
@@ -25,7 +58,7 @@ class Games{
             $sql->execute(array($this->nome, $this->descricao, $this->valor));
             header('Location: /crud/pages/index.php');
         }catch(err){
-            echo err.getMessage();
+            echo err->getMessage();
         }
         
     }
@@ -55,7 +88,7 @@ class Games{
            
             header('Location: /crud/pages/index.php');
         }catch(err){
-            echo err.getMessage();
+            echo err->getMessage();
         }
     }
 
@@ -66,7 +99,7 @@ class Games{
             $sql->execute();
             header('Location: /crud/pages/index.php');
         }catch(err){
-            echo err.getMessage();
+            echo err->getMessage();
         }
     }
 

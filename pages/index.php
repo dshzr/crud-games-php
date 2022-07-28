@@ -2,7 +2,7 @@
     include_once '../classes/Games.php';
     include '../classes/getGames.php';
 
-    
+    $allGames = Games::getGames();
     
 ?>
 <!DOCTYPE html>
@@ -114,7 +114,7 @@
     <div class="container mx-auto text-white flex flex-col items-center px-4 w-full  lg:w-2/4">
         <div class="flex justify-between flex-wrap items-center w-full mt-5">
             <h1 class="text-4xl font-bold ">LISTA DE GAMES</h1>
-            <a class="link" href="./cadastrar.php">CADASTRAR</a>
+            <a class="link" href="/crud/pages/cadastrar.php">CADASTRAR</a>
         </div>
 
         
@@ -148,7 +148,7 @@
 
 
     <div data-gameid="1" id="popup-editar" class="hide fixed z-100 w-screen h-screen bg-black/50 m-auto p-10 ">
-        <form method="POST" class="form" name="form" action="/crud/classes/editarGame.php">
+        <form name="editar" method="POST" class="form" action="/crud/classes/Games.php">
             <div class="flex w-full justify-end ">
                 <span id="close-popup" class=" text-gray-800 text-3xl font-bold cursor-pointer p-4">X</span>
             </div>
@@ -177,10 +177,10 @@
                 id="valor-game" 
                 placeholder="Valor"
             >
-            <button
-            
-            class="btn"
-            >EDITAR JOGO</button>
+            <input type="hidden" name="submit" value="editar"> 
+            <button class="btn">
+                EDITAR JOGO
+            </button>
         </form>
     </div>
           

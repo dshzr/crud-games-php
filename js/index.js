@@ -28,8 +28,7 @@ function showDataInPopup(id) {
           valor: item.valor,
         };
       });
-      let gameSelecionado = dados[id - 1];
-      console.log(dados);
+      let gameSelecionado = dados[id -2];
       $("#id-game").val(gameSelecionado.id);
       $("#nome-game").val(gameSelecionado.nome);
       $("#descricao-game").val(gameSelecionado.descricao);
