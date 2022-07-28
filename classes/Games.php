@@ -3,21 +3,13 @@ include_once 'Conexao.php';
 
 
 
-if(isset($_GET['id'])){
-    $id = intVal($_GET['id']);
-    Games::deleteGame($id);
-}
 
 
 
 //CRIAR/EDITAR GAME 
 if(isset($_POST['submit'])){
     if($_POST['submit'] == 'cadastrar'){
-
         //validacao
-
-
-
 
         $nome = $_POST['nome'];
         $descricao = $_POST['descricao'];
@@ -28,13 +20,6 @@ if(isset($_POST['submit'])){
     else if(($_POST['submit'] == 'editar')){
         //validacao
         
-
-
-
-
-
-
-
         $nome = $_POST['nome-game'];
         $descricao = $_POST['descricao-game'];
         $valor = doubleval($_POST['valor-game']);
@@ -47,6 +32,7 @@ if(isset($_POST['submit'])){
             "valor" =>  $valor,
             "id" => $id
         ];
+      
         Games::updateGame($game);
     }
  

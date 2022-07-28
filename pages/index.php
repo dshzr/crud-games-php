@@ -136,8 +136,8 @@
                             $game[descricao]
                             </p>
                             <div class='flex w-full justify-start flex-wrap sm:justify-end gap-3 sm:my-0 my-4'>
-                                <button data-game='$game[id]'  name='btn-editar' type='submit' class='btn-editar btn-action bg-blue-500 hover:bg-blue-400 '>EDITAR</button>
-                                <button data-game='$game[id]'  name='btn-deletar' type='submit' class='btn-deletar btn-action bg-red-500 hover:bg-red-400 '>DELETAR</button>
+                                <a href='/crud/pages/editar.php?editar=$game[id]' name='btn-editar'  class='btn-editar btn-action bg-blue-500 hover:bg-blue-400 '>EDITAR</a>
+                                <a href='/crud/pages/deletar.php?deletar=$game[id]' name='btn-deletar' class='btn-deletar btn-action bg-red-500 hover:bg-red-400 '>DELETAR</a>
                             </div>
                         </div>
                         ";
