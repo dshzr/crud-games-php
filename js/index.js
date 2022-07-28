@@ -51,9 +51,20 @@ Array.from(botoesDeletar).forEach((botao) => {
 });
 
 function deletarGame(id) {
-  let resAlert = confirm("DESEJA DELETAR ESSE JOGO?");
+  swal({
+    title: "Você tem certeza?",
+    text: "Você está prestes a deletar um game!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      window.location.href = "../classes/Games.php/?id=" + id;
+    }
+  });
+  // let resAlert = confirm("DESEJA DELETAR ESSE JOGO?");
 
-  if (resAlert) {
-    window.location.href = "../classes/Games.php/?id=" + id;
-  }
+  // if (resAlert) {
+  //   window.location.href = "../classes/Games.php/?id=" + id;
+  // }
 }

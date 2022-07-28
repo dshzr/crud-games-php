@@ -5,7 +5,7 @@
     
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -118,28 +118,42 @@
 
         
             <?php
-                foreach($allGames as $game){
-                    echo "
-                            <div 
-                                id='$game[id]'
-                                class='
-                                game-card 
-                            '>
-                        <div class='flex justify-between h-8 mb-5 items-center'>
-                            <h3 class='text-lg  font-semibold '>
-                                $game[nome]
-                            </h3>
-                            <span class='font-bold text-green-600'>R$ $game[valor]</span>
+                if(!empty($allGames)){
+                    foreach($allGames as $game){
+                        echo "
+                                <div 
+                                    id='$game[id]'
+                                    class='
+                                    game-card 
+                                '>
+                            <div class='flex justify-between h-8 mb-5 items-center'>
+                                <h3 class='text-lg  font-semibold '>
+                                    $game[nome]
+                                </h3>
+                                <span class='font-bold text-green-600'>R$ $game[valor]</span>
+                            </div>
+                            <p>
+                            $game[descricao]
+                            </p>
+                            <div class='flex w-full justify-start flex-wrap sm:justify-end gap-3 sm:my-0 my-4'>
+                                <button data-game='$game[id]'  name='btn-editar' type='submit' class='btn-editar btn-action bg-blue-500 hover:bg-blue-400 '>EDITAR</button>
+                                <button data-game='$game[id]'  name='btn-deletar' type='submit' class='btn-deletar btn-action bg-red-500 hover:bg-red-400 '>DELETAR</button>
+                            </div>
                         </div>
-                        <p>
-                        $game[descricao]
-                        </p>
-                        <div class='flex w-full justify-start flex-wrap sm:justify-end gap-3 sm:my-0 my-4'>
-                            <button data-game='$game[id]'  name='btn-editar' type='submit' class='btn-editar btn-action bg-blue-500 hover:bg-blue-400 '>EDITAR</button>
-                            <button data-game='$game[id]'  name='btn-deletar' type='submit' class='btn-deletar btn-action bg-red-500 hover:bg-red-400 '>DELETAR</button>
-                        </div>
-                    </div>
-                    ";
+                        ";
+                    }
+                }else{
+            ?>
+            <div class="game-card mt-5 flex flex-col items-center ">
+                <h1 class="text-md">Opa! você ainda não tem jogos cadastrados 😥
+                    </h1>
+                    <a href="/crud/pages/cadastrar.php" class="
+                        font-bold
+                        text-xl
+                        underline
+                    "> Cadastre um novo jogo ❤️</a>
+            </div>
+            <?php
                 }
             ?>
      
@@ -190,7 +204,9 @@
         
     </div>
        
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script src="../js/index.js"></script>
+
 </body>
 </html>
