@@ -1,6 +1,5 @@
 <?php
     include_once '../classes/Games.php';
-    include '../classes/getGames.php';
 
     $allGames = Games::getGames();
     
@@ -172,7 +171,9 @@
             <label class="label" for="valor">Valor</label>
             <input 
                 class="input"
-                type="number" 
+                type="number"
+                min="1" 
+                step="any" 
                 name="valor-game" 
                 id="valor-game" 
                 placeholder="Valor"

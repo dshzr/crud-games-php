@@ -2,9 +2,23 @@
 include_once 'Conexao.php';
 
 
-//CRIAR GAME
+
+if(isset($_GET['id'])){
+    $id = intVal($_GET['id']);
+    Games::deleteGame($id);
+}
+
+
+
+//CRIAR/EDITAR GAME 
 if(isset($_POST['submit'])){
     if($_POST['submit'] == 'cadastrar'){
+
+        //validacao
+
+
+
+
         $nome = $_POST['nome'];
         $descricao = $_POST['descricao'];
         $valor = doubleval($_POST['valor']);
@@ -12,6 +26,15 @@ if(isset($_POST['submit'])){
         $game->createGame($game);
     }
     else if(($_POST['submit'] == 'editar')){
+        //validacao
+        
+
+
+
+
+
+
+
         $nome = $_POST['nome-game'];
         $descricao = $_POST['descricao-game'];
         $valor = doubleval($_POST['valor-game']);
@@ -29,10 +52,7 @@ if(isset($_POST['submit'])){
  
 }
 
-//EDITAR GAME
-if(isset($_POST['editar'])){
-   
-}
+
 
 
 
@@ -69,8 +89,8 @@ class Games{
         try{
             $sql = $con->prepare("SELECT * FROM games");
             $sql->execute();
-            $a = $sql->fetchAll();
-            return $a;
+            $allGames = $sql->fetchAll();
+            return $allGames;
         }catch(err){
             echo err->getMessage();
         }

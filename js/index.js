@@ -28,11 +28,18 @@ function showDataInPopup(id) {
           valor: item.valor,
         };
       });
-      let gameSelecionado = dados[id -2];
-      $("#id-game").val(gameSelecionado.id);
-      $("#nome-game").val(gameSelecionado.nome);
-      $("#descricao-game").val(gameSelecionado.descricao);
-      $("#valor-game").val(gameSelecionado.valor);
+      let gameSelecionado = null;
+      dados.forEach((dado) => {
+        if (dado.id == id) {
+          gameSelecionado = dado;
+        }
+      });
+      if (gameSelecionado) {
+        $("#id-game").val(gameSelecionado.id);
+        $("#nome-game").val(gameSelecionado.nome);
+        $("#descricao-game").val(gameSelecionado.descricao);
+        $("#valor-game").val(gameSelecionado.valor);
+      }
     });
 }
 
@@ -47,6 +54,6 @@ function deletarGame(id) {
   let resAlert = confirm("DESEJA DELETAR ESSE JOGO?");
 
   if (resAlert) {
-    window.location.href = "../classes/deletarGame.php/?id=" + id;
+    window.location.href = "../classes/Games.php/?id=" + id;
   }
 }
