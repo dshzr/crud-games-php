@@ -1,5 +1,9 @@
 <?php
     include_once '../classes/Conexao.php';
+    session_start();
+    if(isset($_GET['erro'])){
+        print_r($_GET);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -18,7 +22,9 @@
             p-4
             bg-white
             rounded
-            shadow-lg;
+            shadow-lg
+            mb-4
+            ;
             
         }
         .label{
@@ -82,9 +88,23 @@
      <div class="flex w-full justify-end pb-5">
          <a class="link" href="/crud/pages/index.php">VER JOGOS</a>
     </div>
-        <form name="cadastrar" id="cadstrar" method="POST" class="form" action="/crud/classes/Games.php">
+        <form  name="cadastrar" id="cadstrar" method="POST" class="form" action="/crud/classes/Games.php">
+            <?php 
+                if(!empty($_SESSION['erros'])){
+                    foreach($_SESSION['erros'] as $erro){
+                        echo '
+                            <div class="w-full p-2 bg-red-500 text-white my-2 border-4 border-red-200">
+                                <h1> '. $erro .' </h1>
+                            </div>
+                        ';
+                    }
+                }
+            
+            ?>
+
+
             <label class="label" for="nome">Nome</label>
-            <input 
+            <input required minlength="3"
             class="input"
             type="text" 
             name="nome" 
@@ -92,7 +112,7 @@
             placeholder="Nome"
             >
             <label class="label" for="descricao">Descrição</label>
-            <input 
+            <input required minlength="4"
             class="input"
             type="text" 
             name="descricao" 
@@ -100,14 +120,14 @@
             placeholder="Descrição"
             >
             <label class="label" for="valor">Valor</label>
-            <input 
+            <input required required 
             class="input"
             type="number" 
             name="valor" 
             id="valor" 
             placeholder="Valor"
             >
-            <input type="hidden" name="submit" value="cadastrar"> 
+            <input required type="hidden" name="submit" value="cadastrar"> 
             <button
             class="btn"
             >CADASTRAR JOGO</button>

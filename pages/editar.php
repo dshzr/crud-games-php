@@ -1,5 +1,9 @@
 <?php
    include '../classes/Games.php';
+   if(!isset($_SESSION)){
+    session_start();
+   }
+
     if(isset($_GET['editar'])){
         $idgame = $_GET['editar'];
         $allGames = Games::getGames();
@@ -9,9 +13,18 @@
                 $game = $oneGame;
             }
         }
+
+    }else{
+        $idgame = $_SESSION['id-game'];
+        $allGames = Games::getGames();
+        
+        foreach($allGames as $oneGame){
+            if($oneGame['id'] == $idgame){
+                $game = $oneGame;
+            }
+        }
     }
 
-    
 
 ?>
 <!DOCTYPE html>
@@ -91,17 +104,26 @@
 <body class="bg-red-500">
     <div class="container p-4 flex items-center justify-start flex-col h-screen mx-auto w-full  lg:w-2/4">
        
-            <h1 class="text-4xl text-white font-bold my-7">EDITAR GAME</h1>
+            <h1 class="text-4xl text-white font-bold my-7">EDITAR GAME></h1>
      <div class="flex w-full justify-end pb-5">
          <a class="link" href="/crud/pages/index.php">VER JOGOS</a>
     </div>
     <form name="editar" method="POST" class="form" action="../classes/Games.php">
-            <div class="flex w-full justify-end ">
-                <span id="close-popup" class=" text-gray-800 text-3xl font-bold cursor-pointer p-4">X</span>
-            </div>
-            <input type="hidden" name="id-game" value="<?= $game['id'] ?>"> 
+            <?php 
+                if(!empty($_SESSION['erros'])){
+                    foreach($_SESSION['erros'] as $erro){
+                        echo '
+                            <div class="w-full p-2 bg-red-500 text-white my-2 border-4 border-red-200">
+                                <h1> '. $erro .' </h1>
+                            </div>
+                        ';
+                    }
+                }
+            
+            ?>
+            <input required  type="hidden" name="id-game" value="<?= $game['id'] ?>"> 
             <label class="label" for="nome">Nome</label>
-            <input 
+            <input required  
                 class="input"
                 type="text" 
                 name="nome-game" 
@@ -110,7 +132,7 @@
                 value="<?= $game['nome'] ?>"
             >
             <label class="label" for="descricao">Descrição</label>
-            <input 
+            <input required  
                 class="input"
                 type="text" 
                 name="descricao-game" 
@@ -119,7 +141,7 @@
                 value="<?= $game['descricao'] ?>"
             >
             <label class="label" for="valor">Valor</label>
-            <input 
+            <input required  
                 class="input"
                 type="number"
                 min="1" 
@@ -129,7 +151,7 @@
                 placeholder="Valor"
                 value="<?= $game['valor'] ?>"
             >
-            <input type="hidden" name="submit" value="editar"> 
+            <input required  type="hidden" name="submit" value="editar"> 
             <button type="submit" class="btn">
                 EDITAR JOGO
             </button>

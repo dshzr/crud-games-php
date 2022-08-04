@@ -1,39 +1,88 @@
 <?php
 include_once 'Conexao.php';
 
-
-
-
-
+session_start();
 
 //CRIAR/EDITAR GAME 
 if(isset($_POST['submit'])){
     if($_POST['submit'] == 'cadastrar'){
-        //validacao
+        $erros = array();
 
-        $nome = $_POST['nome'];
-        $descricao = $_POST['descricao'];
-        $valor = doubleval($_POST['valor']);
-        $game = new Games($nome, $descricao, $valor);
-        $game->createGame($game);
+        //validacao
+        $nomeFilter = filter_input(INPUT_POST, 'nome');
+        $descricaoFilter = filter_input(INPUT_POST, 'descricao');
+        $valorFilter = filter_input(INPUT_POST, 'valor');
+
+        
+
+        if(!$nomeFilter){
+           $erros[] = "preencha o nome do jogo";
+        }
+        if(!$descricaoFilter){
+           $erros[] = "preencha a descricao do jogo";
+        }
+        if(!$valorFilter){
+            $erros[] = "preencha o valor do jogo";
+         }
+        
+
+        if(empty($erros)){
+            unset($_SESSION['erros']);
+            unset($_SESSION['valores']);
+            $nome = $_POST['nome'];
+            $descricao = $_POST['descricao'];
+            $valor = doubleval($_POST['valor']);
+            $game = new Games($nome, $descricao, $valor);
+            $game->createGame($game);
+
+        }else{
+            $_SESSION['valores'] = array(
+                "nome" => $nomeFilter,
+                "descricao" => $descricaoFilter,
+                "valor" => $valorFilter
+            );
+            $_SESSION['erros'] = $erros;
+            header('Location: /crud/pages/cadastrar.php');
+        }
+
     }
     else if(($_POST['submit'] == 'editar')){
+        $erros = array();
+
         //validacao
-        
-        $nome = $_POST['nome-game'];
-        $descricao = $_POST['descricao-game'];
-        $valor = doubleval($_POST['valor-game']);
-        $id = intVal($_POST['id-game']);
-        
-        $game = [
-            "id" => $id,
-            "nome" => $nome,
-            "descricao" => $descricao,
-            "valor" =>  $valor,
-            "id" => $id
-        ];
-      
-        Games::updateGame($game);
+        $nomeFilter = filter_input(INPUT_POST, 'nome-game');
+        $descricaoFilter = filter_input(INPUT_POST, 'descricao-game');
+        $valorFilter = filter_input(INPUT_POST, 'valor-game');
+        $idFilter = filter_input(INPUT_POST, 'id-game');
+
+        if(!$nomeFilter){
+           $erros[] = "preencha o nome do jogo";
+        }
+        if(!$descricaoFilter){
+           $erros[] = "preencha a descricao do jogo";
+        }
+        if(!$valorFilter){
+            $erros[] = "preencha o valor do jogo";
+         }
+
+        //validacao
+        if(empty($erros)){
+            unset($_SESSION['erros']);
+            unset($_SESSION['id-game']);
+            $game = [
+                "id" => $idFilter,
+                "nome" => $nomeFilter,
+                "descricao" => $descricaoFilter,
+                "valor" =>  $valorFilter,
+                "id" => $idFilter
+            ];
+          
+            Games::updateGame($game);
+        }else{
+            $_SESSION['id-game'] = $idFilter;
+            $_SESSION['erros'] = $erros;
+            header('Location: /crud/pages/editar.php');
+        }
     }
  
 }

@@ -115,8 +115,6 @@
             <h1 class="text-4xl font-bold ">LISTA DE GAMES</h1>
             <a class="link" href="/crud/pages/cadastrar.php">CADASTRAR</a>
         </div>
-
-        
             <?php
                 if(!empty($allGames)){
                     foreach($allGames as $game){
@@ -156,51 +154,6 @@
             <?php
                 }
             ?>
-     
-<!-- POPUP EDITAR GAME -->
-
-
-    <div data-gameid="1" id="popup-editar" class="hide fixed z-100 w-screen h-screen bg-black/50 m-auto p-10 ">
-        <form name="editar" method="POST" class="form" action="/crud/classes/Games.php">
-            <div class="flex w-full justify-end ">
-                <span id="close-popup" class=" text-gray-800 text-3xl font-bold cursor-pointer p-4">X</span>
-            </div>
-            <input class="hidden" type="number" id='id-game' name='id-game'>
-            <label class="label" for="nome">Nome</label>
-            <input 
-                class="input"
-                type="text" 
-                name="nome-game" 
-                id="nome-game" 
-                placeholder="Nome"
-            >
-            <label class="label" for="descricao">Descrição</label>
-            <input 
-                class="input"
-                type="text" 
-                name="descricao-game" 
-                id="descricao-game" 
-                placeholder="Descrição"
-            >
-            <label class="label" for="valor">Valor</label>
-            <input 
-                class="input"
-                type="number"
-                min="1" 
-                step="any" 
-                name="valor-game" 
-                id="valor-game" 
-                placeholder="Valor"
-            >
-            <input type="hidden" name="submit" value="editar"> 
-            <button class="btn">
-                EDITAR JOGO
-            </button>
-        </form>
-    </div>
-          
- 
-<!-- POPUP EDITAR GAME -->
         
     </div>
        
